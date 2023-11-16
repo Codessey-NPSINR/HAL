@@ -100,7 +100,7 @@ def makescreen():
         lp = points_in_circle(coordinates, radius_km)
         
         
-        map_widget.set_position(coordinates[0], coordinates[1], marker=True)
+        map_widget.set_position(coordinates[0], coordinates[1], marker=True, text=ad)
         
         map_widget.set_zoom(10)
             
@@ -117,9 +117,9 @@ def makescreen():
             polygon_intersection = map_widget.set_polygon(intersectionpolycoor, fill_color='black')'''
         
         
-        csvpath = r"D:\Codessey2023\drive-download-20231116T055713Z-001\coordinates_cafes(1).csv"
+        cafepath = r"D:\Codessey2023\drive-download-20231116T055713Z-001\coordinates_cafes(1).csv"
         
-        with open(csvpath, 'r') as f:
+        with open(cafepath, 'r') as f:
             
             reader = csv.reader(f)        
             
@@ -131,7 +131,63 @@ def makescreen():
                 
                 plotpoly(coor)
                 
+        '''gympath = r"D:\Codessey2023\drive-download-20231116T055713Z-001\coordinates_gyms(1).csv"
+        
+        with open(gympath, 'r') as f:
+            
+            reader = csv.reader(f)
+            
+            for i in reader:
                 
+                colat = float(i[0])
+                colong = float(i[1])
+                coor = (colat, colong)
+                
+                plotpoly(coor)
+                
+        hospitalspath = r"D:\Codessey2023\drive-download-20231116T055713Z-001\coordinates_hospital(1).csv"
+        
+        with open(hospitalspath, 'r') as f:
+            
+            reader = csv.reader(f)
+            
+            for i in reader:
+                
+                colat = float(i[0])
+                colong = float(i[1])
+                coor = (colat, colong)
+                
+                plotpoly(coor)
+                
+        parkpath = r"D:\Codessey2023\drive-download-20231116T055713Z-001\coordinates_parks(1).csv"
+        
+        with open(parkpath, 'r') as f:
+            
+            reader = csv.reader(f)
+            
+            for i in reader:
+                
+                colat = float(i[0])
+                colong = float(i[1])
+                coor = (colat, colong)
+                
+                plotpoly(coor)
+                
+        restpath = r"D:\Codessey2023\drive-download-20231116T055713Z-001\coordinates_restaurants(1).csv"
+        
+        with open(restpath, 'r') as f:
+            
+            reader = csv.reader(f)
+            
+            for i in reader:
+                
+                colat = float(i[0])
+                colong = float(i[1])
+                coor = (colat, colong)
+                
+                plotpoly(coor)
+                
+                '''
     
     
     
