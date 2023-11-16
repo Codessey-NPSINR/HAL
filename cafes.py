@@ -62,18 +62,31 @@ def makescreen():
             print(f"Error getting coordinates: {e}")
             return None
         
+        
+        
     def ifclicked():
+        
+        global map_widget
         
         def plotpoly(coordinates):
             
             rad = 0.5
+            print(coordinates)
+            global map_widget
             
             lp = points_in_circle(coordinates, rad)
             
             poly = map_widget.set_polygon(lp, fill_color='red')
             
+            shppoly = points_to_polygon(lp)
             
-        
+            intersection = shppolymain.intersection(shppoly)
+            
+            intersecpolypoints = list(intersection.exterior.coords)
+            
+            poly = map_widget.set_polygon(intersecpolypoints, fill_color = 'black')
+            
+            
         ad = entry1.get()
         radius_km = float(entry2.get())
         
@@ -81,7 +94,7 @@ def makescreen():
         
         maincircle=points_in_circle(coordinates, radius_km)
         
-        #polymain = map_widget.set_polygon(maincircle, fill_color='green')
+        polymain = map_widget.set_polygon(maincircle, fill_color='green')
             
         
         lp = points_in_circle(coordinates, radius_km)
@@ -92,7 +105,7 @@ def makescreen():
         map_widget.set_zoom(10)
             
         
-        shppoly1 = points_to_polygon(lp)
+        shppolymain = points_to_polygon(lp)
         
         #intersectionpolygon = shppoly1.intersection(shppoly2)
         
@@ -116,7 +129,6 @@ def makescreen():
                 colong = float(i[1])
                 coor = (colat, colong)
                 
-                print(coor)
                 plotpoly(coor)
                 
                 
@@ -140,6 +152,7 @@ def makescreen():
     button = ctk.CTkButton(root, text="Enter", command=ifclicked) 
     button.place(relx = 0.1, rely = 0.5)
     
+    global map_widget
     map_widget = tkintermapview.TkinterMapView(root, width = 800, height = 500, corner_radius=10)
     map_widget.place(relx=0.7, rely=0.5,anchor=tk.CENTER)
     map_widget.set_zoom(0)  
